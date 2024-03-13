@@ -18,39 +18,24 @@ Window.title = "Игра"
 Window.size = (350, 650)
 Window.clearcolor = (0, 0, 0, 1)
 
-#ivent = ["Вы нашли\nсундук", "На вас напали\nбандиты", "Вы нашли\nдеревню", "Вы нашли\nдракона", "На вас\nнапали волки"]
-ivent = ["На вас напали\nбандиты", "На вас\nнапали волки"]
-#hp = 100
+ivent = [
+	"Вы нашли\nсундук", 
+	"На вас напали\nбандиты", 
+	"Вы нашли\nдеревню", 
+	"Вы нашли\nдракона", 
+	"На вас\nнапали волки", 
+	"Вы напаролись на\n ржавый гвоздь"#,
+	#"Вы нашли\n подорожник"
+	]
+
+#ivent = ["На вас напали\nбандиты", "На вас\nнапали волки"]
 enemy_battle = False
-strng = "Куда идём?"
-
-box1 = BoxLayout(orientation='horizontal', size_hint=(None, 1))
-box2 = BoxLayout(orientation='vertical')
-box3 = BoxLayout(orientation='horizontal')
-gridox2 = GridLayout(cols=2)
-
-def start(self):
-	self.label = Label(text=strng, halign="center", font_size=30, font_name="press-start-2p-regular", color=(0, 1, 0, 1))
-	self.label1 = Label(text=f"{Player.LIFE} hp", font_size=30, size_hint=(None, None), size=(350, 100), pos_hint=({'top': 1}), font_name="press-start-2p-regular", color=(0, 1, 0, 1))
-	self.label2 = Label(text="100 mn", font_size=30, size_hint=(None, None), size=(350, 100), pos_hint=({'top': 1}), font_name="press-start-2p-regular", color=(0, 1, 0, 1))
-	#self.button1 = Button(text="Кнопка", size_hint=(None, None), size=(350, 100), font_name="press-start-2p-regular", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
-	#self.button2 = Button(text="Кнопка", size_hint=(None, None), size=(350, 100), font_name="press-start-2p-regular", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
-	self.button11 = Button(text="Кнопка11", font_name="press-start-2p-regular", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
-	self.button12 = Button(text="Кнопка12", font_name="press-start-2p-regular", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
-	self.button13 = Button(text="Кнопка13", font_name="press-start-2p-regular", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
-	self.button14 = Button(text="Кнопка14", font_name="press-start-2p-regular", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
-	#self.button1.bind(on_press=self.tst)
-	#self.button2.bind(on_press=self.tst2)
-	self.button11.bind(on_press=self.tst)
-	#self.button12.bind(on_press=self.tst2)
-	self.button13.bind(on_press=self.callback)
-	self.button14.bind(on_press=self.att)
-
+start_string = "Куда идём?"
 
 class Player():
 	LIFE = 100
 	IDLE = 0
-	BATTLE = 1
+	BATLE = 1
 	RUN = 2
 
 class MyApp(App):
@@ -62,67 +47,56 @@ class MyApp(App):
 	# Создание всех виджетов (объектов)
 	def __init__(self):
 		super().__init__()
-		#start(self)
 
 	def build(self):
-		##box = BoxLayout(orientation='vertical')
-		##box4 = BoxLayout(orientation='horizontal')
-
-		#box1 = BoxLayout(orientation='horizontal', size_hint=(None, 1))
-		##box1.add_widget(self.label1)
-		##box1.add_widget(self.label2)
-
-		#box2 = BoxLayout(orientation='vertical')
-		##box2.add_widget(self.label)
-
-		#box3 = BoxLayout(orientation='horizontal')
-		#box3.add_widget(self.button1)
-		#box3.add_widget(self.button2)
-		##gridox2.add_widget(self.button11)
-		##gridox2.add_widget(self.button12)
-		##gridox2.add_widget(self.button13)
-		##gridox2.add_widget(self.button14)
-
-		##box.add_widget(box1)
-		##box.add_widget(box2)
-		#box.add_widget(box3)
-		##box.add_widget(gridox2)
 		start_button = Button(text="Начать путишествие", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1), font_name="press-start-2p-regular")
 		start_button.bind(on_press=self.main_loop_)
 		self.grid.add_widget(start_button)
 		self.current_widgets.add(start_button)
+		
 		return self.grid
 
 	def add_widgetttt(self, w):
 		self.grid.add_widget(w)
 		self.current_widgets.add(w)
 
-	def menu(self):
-		label = Label(text="Вы гуляли и натолкнулись на врага")
-		fight_button = Button(text="Драться", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
-		run_button = Button(text="Убежать", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
-		self.add_widgetttt(label)
-		self.add_widgetttt(fight_button)
-		self.add_widgetttt(run_button)
-
-	def menu2(self):
-		#box2 = BoxLayout(orientation='vertical')
-		#box3 = BoxLayout(orientation='horizontal')
-		label1 = Label(text=f"{Player.LIFE} hp", font_size=30, size_hint=(None, None), size=(350, 100), pos_hint=({'top': 1}), font_name="press-start-2p-regular", color=(0, 1, 0, 1))
-		#label2 = Label(text="100 mn", font_size=30, size_hint=(None, None), size=(350, 100), pos_hint=({'top': 1}), font_name="press-start-2p-regular", color=(0, 1, 0, 1))
-		#box2.add_widget(label1)
-		label = Label(text=strng, halign="center", font_size=30, font_name="press-start-2p-regular", color=(0, 1, 0, 1))
+	def menu_test(self):
+		box1 = BoxLayout(orientation='horizontal', size_hint_y=None)
+		box2 = BoxLayout()
+		box3 = BoxLayout(orientation='vertical')
+		label_hp = Label(text=f"{Player.LIFE} hp", font_size=30, size_hint=(None, None), size=(350, 100), pos_hint=({'top': 1}), font_name="press-start-2p-regular", color=(0, 1, 0, 1))
+		label_mn = Label(text="100 mn", font_size=30, size_hint=(None, None), size=(350, 100), pos_hint=({'top': 1}), font_name="press-start-2p-regular", color=(0, 1, 0, 1))
+		label_ivent = Label(text=start_string, halign="center", font_size=30, font_name="press-start-2p-regular", color=(0, 1, 0, 1))
 		button11 = Button(text="Бежать налево", font_name="press-start-2p-regular", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
 		button12 = Button(text="Бежать направо", font_name="press-start-2p-regular", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
-		#self.add_widgetttt(box2)
-		#self.add_widget(box3)
-		self.add_widgetttt(label1)
-		#self.add_widgetttt(label2)
-		self.add_widgetttt(label)
-		self.add_widgetttt(button11)
-		self.add_widgetttt(button12)
-		button11.bind(on_press=self.tst)
+		box1.add_widget(label_hp)
+		box1.add_widget(label_mn)
+		box2.add_widget(label_ivent)
+		box3.add_widget(button11)
+		box3.add_widget(button12)
+		self.add_widgetttt(box1)
+		self.add_widgetttt(box2)
+		self.add_widgetttt(box3)
+		button11.bind(on_press=self.run_ivent)
 
+	def menu(self, txt):
+		box1 = BoxLayout(orientation='horizontal', size_hint_y=None)
+		box2 = BoxLayout()
+		box3 = BoxLayout(orientation='vertical')
+		label_hp = Label(text=f"{Player.LIFE} hp {self.player_state}", font_size=30, size_hint=(None, None), size=(350, 100), pos_hint=({'top': 1}), font_name="press-start-2p-regular", color=(0, 1, 0, 1))
+		label_mn = Label(text="100 mn", font_size=30, size_hint=(None, None), size=(350, 100), pos_hint=({'top': 1}), font_name="press-start-2p-regular", color=(0, 1, 0, 1))
+		label_ivent = Label(text=start_string, halign="center", font_size=30, font_name="press-start-2p-regular", color=(0, 1, 0, 1))
+		button11 = Button(text="Бежать налево", font_name="press-start-2p-regular", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
+		button11.bind(on_press=self.run_ivent)
+		button12 = Button(text="Бежать направо", font_name="press-start-2p-regular", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
+		box1.add_widget(label_hp)
+		box1.add_widget(label_mn)
+		box2.add_widget(label_ivent)
+		box3.add_widget(button11)
+		box3.add_widget(button12)
+		self.add_widgetttt(box1)
+		self.add_widgetttt(box2)
+		self.add_widgetttt(box3)
 
 	def main_loop_(self, *args, **kwargs):
 		print(self, args, kwargs)
@@ -131,64 +105,49 @@ class MyApp(App):
 			self.current_widgets.remove(w)
 			self.grid.remove_widget(w)
 		if (self.player_state == Player.IDLE):
-			label1 = Label(text=f"{Player.LIFE} hp", font_size=30, size_hint=(None, None), size=(350, 100), pos_hint=({'top': 1}), font_name="press-start-2p-regular", color=(0, 1, 0, 1))
-			label = Label(text=strng, halign="center", font_size=30, font_name="press-start-2p-regular", color=(0, 1, 0, 1))
-			button11 = Button(text="Бежать налево", font_name="press-start-2p-regular", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
-			button12 = Button(text="Бежать направо", font_name="press-start-2p-regular", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
-			self.add_widgetttt(label1)
-			self.add_widgetttt(label)
-			self.add_widgetttt(button11)
-			self.add_widgetttt(button12)
-			button11.bind(on_press=self.tst)
+			self.menu(start_string)
 		elif (self.player_state == Player.RUN):
 			label = Label(text="strng", halign="center", font_size=30, font_name="press-start-2p-regular", color=(0, 1, 0, 1))
 			self.add_widgetttt(label)
+		elif (self.player_state == Player.BATLE):
+			self.menu(start_string)
+
 	
 	def running(self, *args):
 		self.player_state = Player.RUN
 		self.main_loop_()
 
-	def tst(self, *args, **kwargs):
-		#box1.remove_widget(self.label2)
-		random.shuffle(ivent)
-		rnd = random.choice(ivent)
-		print(rnd)
-		global strng
-
-		if (strng == rnd):
+	def run_ivent(self, *args):
+		def rnd_ivent(*args):
 			random.shuffle(ivent)
 			rnd = random.choice(ivent)
-			strng = rnd
-			print(strng)
+			global start_string
+			if (start_string == rnd):
+				random.shuffle(ivent)
+				rnd = random.choice(ivent)
+				start_string = rnd
+			else:
+				start_string = rnd
+			return start_string
 
-			label1 = Label(text=f"{Player.LIFE} hp", font_size=30, size_hint=(None, None), size=(350, 100), pos_hint=({'top': 1}), font_name="press-start-2p-regular", color=(0, 1, 0, 1))
-			label = Label(text=strng, halign="center", font_size=30, font_name="press-start-2p-regular", color=(0, 1, 0, 1))
-			button11 = Button(text="Бежать налево", font_name="press-start-2p-regular", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
-			button12 = Button(text="Бежать направо", font_name="press-start-2p-regular", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
-			self.add_widgetttt(label1)
-			self.add_widgetttt(label)
-			self.add_widgetttt(button11)
-			self.add_widgetttt(button12)
-
+		#if (start_string == "Вы напаролись на\n ржавый гвоздь"):
+		#	Player.LIFE -= 10
+		#elif (start_string == "Вы нашли\n подорожник"):
+		#	Player.LIFE += 10
+		'''
+		if (start_string == "На вас напали\nбандиты"):
+			#start_string = "Идет бой"
+			self.menu(start_string)
+			self.player_state = Player.BATLE
 			self.main_loop_()
-			#label.text = strng
 		else:
-			strng = rnd
-			print(strng)
-
-			label1 = Label(text=f"{Player.LIFE} hp", font_size=30, size_hint=(None, None), size=(350, 100), pos_hint=({'top': 1}), font_name="press-start-2p-regular", color=(0, 1, 0, 1))
-			label = Label(text=strng, halign="center", font_size=30, font_name="press-start-2p-regular", color=(0, 1, 0, 1))
-			button11 = Button(text="Бежать налево", font_name="press-start-2p-regular", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
-			button12 = Button(text="Бежать направо", font_name="press-start-2p-regular", background_color=(1, 0, 0, 1), color=(0, 1, 0, 1))
-			self.add_widgetttt(label1)
-			self.add_widgetttt(label)
-			self.add_widgetttt(button11)
-			self.add_widgetttt(button12)
-
+			self.menu(rnd_ivent())
+			self.player_state = Player.IDLE
 			self.main_loop_()
-
-		#if (strng == "На вас напали\nбандиты"):
-		#	print("F")
+		'''
+		self.menu(rnd_ivent())
+		self.player_state = Player.IDLE
+		self.main_loop_()
 
 
 	def att(self, *args, **kwargs):
