@@ -57,7 +57,7 @@ class EnemyNps():
 		return rnd
 
 class Items():
-	PLANTAIN = 10
+	PLANTAIN = 60
 
 class MyApp(App):
 
@@ -239,7 +239,7 @@ class MyApp(App):
 
 	def run_ivent(self, *args):
 		global start_string
-		def rnd_ivent(*args):
+		def rnd(*args):
 			random.shuffle(ivent)
 			rnd = random.choice(ivent)
 			global start_string
@@ -250,23 +250,29 @@ class MyApp(App):
 			else:
 				return rnd
 
-		#if (start_string == "Вы напаролись на\n ржавый гвоздь"):
-		#	Player.LIFE -= 10
-		#elif (start_string == "Вы нашли\n подорожник"):
-		#	Player.LIFE += 10
+		if (start_string == "Вы напаролись на\n ржавый гвоздь"):
+			Player.LIFE -= 10
+		elif (start_string == "Вы нашли\n подорожник"):
+			Player.LIFE += Items.PLANTAIN
+			if (Player.LIFE > 100):
+				# i = 120
+				i = Player.LIFE
+				# b = 120 - 100 = 20
+				b = i - 100
+				# 120 - 20 = 100
+				Player.LIFE -= b
 
 		if (start_string == "На вас напали\nбандиты"):
 			start_string = "Что делать?"
 			self.player_state = Player.BATLE
 			self.main_loop_()
+		elif (Player.LIFE <= 0):
+			self.player_state = Player.DEAD
+			self.main_loop_()
 		else:
-			start_string = rnd_ivent()
+			start_string = rnd()
 			self.player_state = Player.IDLE
 			self.main_loop_()
-
-		#self.menu(rnd_ivent())
-		#self.player_state = Player.IDLE
-		#self.main_loop_()
 
 	'''
 	def att(self, *args, **kwargs):
